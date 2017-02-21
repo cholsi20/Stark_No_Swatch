@@ -16,6 +16,9 @@ SET @TemplateCode = "STARKNOSWATCH"   /* template code here */
 
 SET @TemplateKey = "20160808"	/* Set Teplate Key code here */
 
+VAR @utmSource
+SET @utmSource = "ProductSpotlight" /* MANUALLY CHANGE */
+
 SET @SubjectLine = LOOKUP("TemplateValue", "AssetText", "TemplateCode", @TemplateCode, "TemplateKey", @TemplateKey, "AssetSection", "SUBJECT", "AssetField", "SUBJECT_LINE")
 SET @PreviewPane = LOOKUP("TemplateValue", "AssetText", "TemplateCode", @TemplateCode, "TemplateKey", @TemplateKey, "AssetSection", "SUBJECT", "AssetField", "PREVIEW_PANE")
 ]%%  
@@ -118,7 +121,7 @@ SET @date_str = xtshortdate
 
 %%[
 /* SET UNSUBSCRIBE LINK */
-SET @URL_Unsubscribe = Concat('https://www.onekingslane.com/my_account/email-preferences?id=',customer_id,'&token=',MD5(emailaddr),'&utm_source=Brand&utm_medium=Email&utm_campaign=%%jobid%%&utm_content=',@date_str,'.%%_subscriberkey%%.',@Email_Type,'&utm_term=Footer.EmailPreferences')
+SET @URL_Unsubscribe = Concat('https://www.onekingslane.com/my_account/email-preferences?id=',customer_id,'&token=',MD5(emailaddr),'&utm_source=', @utmSource, '&utm_medium=Email&utm_campaign=%%jobid%%&utm_content=',@date_str,'.%%_subscriberkey%%.',@Email_Type,'&utm_term=Footer.EmailPreferences')
 
 /* SET ASSET SOURCE */
 SET @AssetSource = LOOKUP("TemplateValue", "AssetUtmTerm", "TemplateCode", @TemplateCode, "TemplateKey", @TemplateKey, "AssetSection", "HEADER", "AssetField", "HEADER_IMAGE")
@@ -138,7 +141,7 @@ SET @AssetSource = LOOKUP("TemplateValue", "AssetUtmTerm", "TemplateCode", @Temp
     <!-- BEGIN LOGO --> 
     <tr> 
       <td colspan="5" width="100%" style="text-align:center;"> 
-        <a href="%%=RedirectTo(Concat('https://www.onekingslane.com?utm_source=',@Brand,'&utm_medium=Email&utm_campaign=', jobid , '&utm_content=', @date_str, '.',  _subscriberkey, '.', @Email_Type, '&utm_term=Header.Logo'))=%%">
+        <a href="%%=RedirectTo(Concat('https://www.onekingslane.com?utm_source=',@utmSource,'&utm_medium=Email&utm_campaign=', jobid , '&utm_content=', @date_str, '.',  _subscriberkey, '.', @Email_Type, '&utm_term=Header.Logo'))=%%">
           <div class="logo">
             <img src="https://okl.scene7.com/is/image/OKL/email_mobile_header_1?fmt=gif&wid=406&qlt=100,0" border="0" id="mobile_header"/>
           </div>
@@ -191,7 +194,7 @@ SET @AssetSource = LOOKUP("TemplateValue", "AssetUtmTerm", "TemplateCode", @Temp
     			SET @AssetSource = LOOKUP("TemplateValue", "AssetUtmTerm", "TemplateCode", @TemplateCode, "TemplateKey", @TemplateKey, "AssetSection", "HEADER_SECTION", "AssetField", "EVENT_1")
     		</script>
 
-		    <a href="%%=RedirectTo(Concat('http://',@AssetLink,'?utm_source=EditorsPicks&utm_medium=Email&utm_campaign=',jobid,'&utm_content=',@date_str,'.',_subscriberkey,'.',@Email_Type,'&utm_term=',@AssetUtmTerm))=%%" style="border:none;" target="_blank">
+		    <a href="%%=RedirectTo(Concat('http://',@AssetLink,'?utm_source=', @utmSource, '&utm_medium=Email&utm_campaign=',jobid,'&utm_content=',@date_str,'.',_subscriberkey,'.',@Email_Type,'&utm_term=',@AssetUtmTerm))=%%" style="border:none;" target="_blank">
           <img src="%%=Concat('https://okl.scene7.com/is/image/OKL/',@AssetImage,'?$w650_jpg$')=%%" alt="One Kings Lane"  border="0" />
         </a>
       </td>
@@ -215,7 +218,7 @@ SET @AssetSource = LOOKUP("TemplateValue", "AssetUtmTerm", "TemplateCode", @Temp
           SET @AssetUtmTerm = LOOKUP("TemplateValue", "AssetUtmTerm", "TemplateCode", @TemplateCode, "TemplateKey", @TemplateKey, "AssetSection", "HEADER_SECTION", "AssetField", "EVENT_2")
         </script>
 
-        <a href="%%=RedirectTo(Concat('http://',@AssetLink,'?utm_source=EditorsPicks&utm_medium=Email&utm_campaign=',jobid,'&utm_content=',@date_str,'.',_subscriberkey,'.',@Email_Type,'&utm_term=',@AssetUtmTerm))=%%" style="border:none;" target="_blank">
+        <a href="%%=RedirectTo(Concat('http://',@AssetLink,'?utm_source=', @utmSource, '&utm_medium=Email&utm_campaign=',jobid,'&utm_content=',@date_str,'.',_subscriberkey,'.',@Email_Type,'&utm_term=',@AssetUtmTerm))=%%" style="border:none;" target="_blank">
           <img src="https://okl.scene7.com/is/image/OKL/%%=v(@AssetImage)=%%?fmt=jpg&amp;wid=585"" alt="One Kings Lane" border="0" >
         </a>
       </td>
@@ -239,7 +242,7 @@ SET @AssetSource = LOOKUP("TemplateValue", "AssetUtmTerm", "TemplateCode", @Temp
           SET @AssetUtmTerm = LOOKUP("TemplateValue", "AssetUtmTerm", "TemplateCode", @TemplateCode, "TemplateKey", @TemplateKey, "AssetSection", "HEADER_SECTION", "AssetField", "EVENT_3")
 		    </script>
               
-        <a href="%%=RedirectTo(Concat('http://',@AssetLink,'?utm_source=EditorsPicks&utm_medium=Email&utm_campaign=',jobid,'&utm_content=',@date_str,'.',_subscriberkey,'.',@Email_Type,'&utm_term=',@AssetUtmTerm))=%%" style="border:none;" target="_blank">
+        <a href="%%=RedirectTo(Concat('http://',@AssetLink,'?utm_source=', @utmSource, '&utm_medium=Email&utm_campaign=',jobid,'&utm_content=',@date_str,'.',_subscriberkey,'.',@Email_Type,'&utm_term=',@AssetUtmTerm))=%%" style="border:none;" target="_blank">
           <img src="https://okl.scene7.com/is/image/OKL/%%=v(@AssetImage)=%%?fmt=jpg&amp;wid=585"" alt="One Kings Lane" border="0" >
         </a>
       </td>
@@ -263,7 +266,7 @@ SET @AssetSource = LOOKUP("TemplateValue", "AssetUtmTerm", "TemplateCode", @Temp
 	        SET @AssetUtmTerm = LOOKUP("TemplateValue", "AssetUtmTerm", "TemplateCode", @TemplateCode, "TemplateKey", @TemplateKey, "AssetSection", "PRODUCT_SECTION", "AssetField", "EVENT_1")
 		    </script>
               
-        <a href="%%=RedirectTo(Concat('http://',@AssetLink,'?utm_source=EditorsPicks&utm_medium=Email&utm_campaign=',jobid,'&utm_content=',@date_str,'.',_subscriberkey,'.',@Email_Type,'&utm_term=',@AssetUtmTerm))=%%" style="border:none;" target="_blank">
+        <a href="%%=RedirectTo(Concat('http://',@AssetLink,'?utm_source=', @utmSource, '&utm_medium=Email&utm_campaign=',jobid,'&utm_content=',@date_str,'.',_subscriberkey,'.',@Email_Type,'&utm_term=',@AssetUtmTerm))=%%" style="border:none;" target="_blank">
           <img src="https://okl.scene7.com/is/image/OKL/%%=v(@AssetImage)=%%?fmt=jpg&amp;wid=585"" alt="One Kings Lane" border="0" >
         </a>
       </td>
@@ -280,7 +283,7 @@ SET @AssetSource = LOOKUP("TemplateValue", "AssetUtmTerm", "TemplateCode", @Temp
 	        SET @AssetUtmTerm = LOOKUP("TemplateValue", "AssetUtmTerm", "TemplateCode", @TemplateCode, "TemplateKey", @TemplateKey, "AssetSection", "PRODUCT_SECTION", "AssetField", "EVENT_2")
 		    </script>
 
-        <a href="%%=RedirectTo(Concat('http://',@AssetLink,'?utm_source=EditorsPicks&utm_medium=Email&utm_campaign=',jobid,'&utm_content=',@date_str,'.',_subscriberkey,'.',@Email_Type,'&utm_term=',@AssetUtmTerm))=%%" style="border:none;" target="_blank">
+        <a href="%%=RedirectTo(Concat('http://',@AssetLink,'?utm_source=', @utmSource, '&utm_medium=Email&utm_campaign=',jobid,'&utm_content=',@date_str,'.',_subscriberkey,'.',@Email_Type,'&utm_term=',@AssetUtmTerm))=%%" style="border:none;" target="_blank">
           <img src="https://okl.scene7.com/is/image/OKL/%%=v(@AssetImage)=%%?fmt=jpg&amp;wid=585"" alt="One Kings Lane" border="0" >
         </a>
       </td>
@@ -297,7 +300,7 @@ SET @AssetSource = LOOKUP("TemplateValue", "AssetUtmTerm", "TemplateCode", @Temp
 	        SET @AssetUtmTerm = LOOKUP("TemplateValue", "AssetUtmTerm", "TemplateCode", @TemplateCode, "TemplateKey", @TemplateKey, "AssetSection", "PRODUCT_SECTION", "AssetField", "EVENT_3")
 		    </script>
 
-        <a href="%%=RedirectTo(Concat('http://',@AssetLink,'?utm_source=EditorsPicks&utm_medium=Email&utm_campaign=',jobid,'&utm_content=',@date_str,'.',_subscriberkey,'.',@Email_Type,'&utm_term=',@AssetUtmTerm))=%%" style="border:none;" target="_blank">
+        <a href="%%=RedirectTo(Concat('http://',@AssetLink,'?utm_source=', @utmSource, '&utm_medium=Email&utm_campaign=',jobid,'&utm_content=',@date_str,'.',_subscriberkey,'.',@Email_Type,'&utm_term=',@AssetUtmTerm))=%%" style="border:none;" target="_blank">
           <img src="https://okl.scene7.com/is/image/OKL/%%=v(@AssetImage)=%%?fmt=jpg&amp;wid=585"" alt="One Kings Lane" border="0" >
         </a>
     </tr>
@@ -313,7 +316,7 @@ SET @AssetSource = LOOKUP("TemplateValue", "AssetUtmTerm", "TemplateCode", @Temp
 	        SET @AssetUtmTerm = LOOKUP("TemplateValue", "AssetUtmTerm", "TemplateCode", @TemplateCode, "TemplateKey", @TemplateKey, "AssetSection", "PRODUCT_SECTION", "AssetField", "EVENT_4")
 		    </script>
 
-        <a href="%%=RedirectTo(Concat('http://',@AssetLink,'?utm_source=EditorsPicks&utm_medium=Email&utm_campaign=',jobid,'&utm_content=',@date_str,'.',_subscriberkey,'.',@Email_Type,'&utm_term=',@AssetUtmTerm))=%%" style="border:none;" target="_blank">
+        <a href="%%=RedirectTo(Concat('http://',@AssetLink,'?utm_source=', @utmSource, '&utm_medium=Email&utm_campaign=',jobid,'&utm_content=',@date_str,'.',_subscriberkey,'.',@Email_Type,'&utm_term=',@AssetUtmTerm))=%%" style="border:none;" target="_blank">
           <img src="https://okl.scene7.com/is/image/OKL/%%=v(@AssetImage)=%%?fmt=jpg&amp;wid=585"" alt="One Kings Lane" border="0" >
         </a>
       </td>
@@ -330,7 +333,7 @@ SET @AssetSource = LOOKUP("TemplateValue", "AssetUtmTerm", "TemplateCode", @Temp
 	        SET @AssetUtmTerm = LOOKUP("TemplateValue", "AssetUtmTerm", "TemplateCode", @TemplateCode, "TemplateKey", @TemplateKey, "AssetSection", "PRODUCT_SECTION", "AssetField", "EVENT_5")
 		    </script>
 
-        <a href="%%=RedirectTo(Concat('http://',@AssetLink,'?utm_source=EditorsPicks&utm_medium=Email&utm_campaign=',jobid,'&utm_content=',@date_str,'.',_subscriberkey,'.',@Email_Type,'&utm_term=',@AssetUtmTerm))=%%" style="border:none;" target="_blank">
+        <a href="%%=RedirectTo(Concat('http://',@AssetLink,'?utm_source=', @utmSource, '&utm_medium=Email&utm_campaign=',jobid,'&utm_content=',@date_str,'.',_subscriberkey,'.',@Email_Type,'&utm_term=',@AssetUtmTerm))=%%" style="border:none;" target="_blank">
           <img src="https://okl.scene7.com/is/image/OKL/%%=v(@AssetImage)=%%?fmt=jpg&amp;wid=585"" alt="One Kings Lane" border="0" >
         </a>
       </td>
